@@ -9,15 +9,22 @@ function App() {
   const [readingTime, setReadingTime] = useState(0);
 
 
-  const handleMarkAsRead = time => {
-    const newReadingTime = readingTime + time;
-    setReadingTime(newReadingTime)
-  }
 
   const handleAddToBookmark = (blog) =>{
     const newBookmarks = [...bookmarks, blog]
     setBookmarks(newBookmarks)
     // console.log(bookmarks);
+  }
+
+  const handleMarkAsRead = (id, time) => {
+    const newReadingTime = readingTime + time;
+    setReadingTime(newReadingTime);
+    // remove read blog from bookmark
+    // console.log("ramove bookmark", id);
+
+    const remainingBookmarks = bookmarks.filter(bookmark => bookmark.id !== id)
+    setBookmarks(remainingBookmarks)
+
   }
 
   return (
